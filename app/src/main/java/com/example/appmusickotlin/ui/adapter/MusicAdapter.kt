@@ -177,14 +177,12 @@ class MusicAdapter(
                     notifyItemMoved(fromPosition, toPosition)
                     return true
                 }
-
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                     // Không xử lý vuốt trong trường hợp này
                 }
             })
+
             itemTouchHelper.attachToRecyclerView(recyclerView)
-
-
     }
 
     @RequiresApi(Build.VERSION_CODES.Q)

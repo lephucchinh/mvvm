@@ -93,12 +93,14 @@ class PlayListsFragment : Fragment(), PlaylistAddedListener, OnItemClickListener
             if(musicList.isNullOrEmpty()){
                 Toast.makeText(context, "chua co music ", Toast.LENGTH_SHORT).show()
             } else {
-                val musicAdapter = MusicAdapter(this.context, musicList,this,false,true)
-                binding.rccMusicAlbum.layoutManager = GridLayoutManager(this.context,2)
-                binding.rccMusicAlbum.adapter = musicAdapter
+//                val musicAdapter = MusicAdapter(this.context, musicList,this,false,true)
+//                binding.rccMusicAlbum.layoutManager = GridLayoutManager(this.context,2)
+//                binding.rccMusicAlbum.adapter = musicAdapter
                 binding.group.visibility = View.GONE
                 binding.rccAlbum.visibility = View.GONE
-                binding.rccMusicAlbum.visibility = View.VISIBLE
+                binding.rccMusicAlbum.visibility = View.GONE
+                binding.rccGridMusicAlbum.visibility = View.VISIBLE
+
                 binding.grSwap.visibility = View.GONE
                 binding.ibnSwap.visibility = View.VISIBLE
                 binding.ibnGrid.visibility = View.GONE
@@ -107,20 +109,20 @@ class PlayListsFragment : Fragment(), PlaylistAddedListener, OnItemClickListener
                 binding.ibnSwap.setOnClickListener {
                     binding.grSwap.visibility = View.VISIBLE
                     binding.ibnSwap.visibility = View.GONE
-                    musicAdapter.setSwap(swap = false)
+                    //musicAdapter.setSwap(swap = false)
 
                 }
                 binding.ibnClose.setOnClickListener {
                     binding.grSwap.visibility = View.GONE
                     binding.ibnSwap.visibility = View.VISIBLE
-                    musicAdapter.setSwap(swap = true)
+                    //musicAdapter.setSwap(swap = true)
                 }
                 binding.ibnOk.setOnClickListener {
                     binding.grSwap.visibility = View.GONE
                     binding.ibnSwap.visibility = View.VISIBLE
-                    musicAdapter.setSwap(swap = true)
+                    //musicAdapter.setSwap(swap = true)
                 }
-                musicAdapter.enableSwipeAndDrag(binding.rccMusicAlbum)
+                //musicAdapter.enableSwipeAndDrag(binding.rccMusicAlbum)
 
             }
 
@@ -136,11 +138,10 @@ class PlayListsFragment : Fragment(), PlaylistAddedListener, OnItemClickListener
             if(musicList.isNullOrEmpty()){
                 Toast.makeText(context, "chua co music ", Toast.LENGTH_SHORT).show()
             } else {
-                val musicAdapter = MusicAdapter(this.context, musicList,this,false,false)
-                binding.rccMusicAlbum.layoutManager = LinearLayoutManager(this.context)
-                binding.rccMusicAlbum.adapter = musicAdapter
+
                 binding.group.visibility = View.GONE
                 binding.rccAlbum.visibility = View.GONE
+                binding.rccGridMusicAlbum.visibility = View.GONE
                 binding.rccMusicAlbum.visibility = View.VISIBLE
                 binding.grSwap.visibility = View.GONE
                 binding.ibnSwap.visibility = View.VISIBLE
@@ -149,19 +150,19 @@ class PlayListsFragment : Fragment(), PlaylistAddedListener, OnItemClickListener
                 binding.ibnSwap.setOnClickListener {
                     binding.grSwap.visibility = View.VISIBLE
                     binding.ibnSwap.visibility = View.GONE
-                    musicAdapter.setSwap(swap = false)
+                    //musicAdapter.setSwap(swap = false)
                 }
                 binding.ibnClose.setOnClickListener {
                     binding.grSwap.visibility = View.GONE
                     binding.ibnSwap.visibility = View.VISIBLE
-                    musicAdapter.setSwap(swap = true)
+                    //musicAdapter.setSwap(swap = true)
                 }
                 binding.ibnOk.setOnClickListener {
                     binding.grSwap.visibility = View.GONE
                     binding.ibnSwap.visibility = View.VISIBLE
-                    musicAdapter.setSwap(swap = true)
+                    //musicAdapter.setSwap(swap = true)
                 }
-                musicAdapter.enableSwipeAndDrag(binding.rccMusicAlbum)
+                //musicAdapter.enableSwipeAndDrag(binding.rccMusicAlbum)
             }
         }
     }
@@ -193,9 +194,15 @@ class PlayListsFragment : Fragment(), PlaylistAddedListener, OnItemClickListener
             val musicAdapter = MusicAdapter(this.context, musicList,this,false,false)
             binding.rccMusicAlbum.layoutManager = LinearLayoutManager(this.context)
             binding.rccMusicAlbum.adapter = musicAdapter
+
+            val musicGridAdapter = MusicAdapter(this.context, musicList,this,false,true)
+            binding.rccGridMusicAlbum.layoutManager = GridLayoutManager(this.context,2)
+            binding.rccGridMusicAlbum.adapter = musicGridAdapter
+
             binding.group.visibility = View.GONE
             binding.rccAlbum.visibility = View.GONE
             binding.rccMusicAlbum.visibility = View.VISIBLE
+            binding.rccGridMusicAlbum.visibility = View.GONE
             binding.grSwap.visibility = View.GONE
             binding.ibnSwap.visibility = View.VISIBLE
             binding.ibnGrid.visibility = View.VISIBLE
@@ -215,9 +222,12 @@ class PlayListsFragment : Fragment(), PlaylistAddedListener, OnItemClickListener
                 binding.ibnSwap.visibility = View.VISIBLE
                 musicAdapter.setSwap(swap = true)
             }
+            musicGridAdapter.enableSwipeAndDrag(binding.rccGridMusicAlbum)
             musicAdapter.enableSwipeAndDrag(binding.rccMusicAlbum)
 
+
         }
+
         getPosition(position)
           }
 
